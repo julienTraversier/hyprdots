@@ -5,11 +5,13 @@ if status is-interactive
 end
 
 # List Directory
-alias ls="lsd"
-alias l="ls -l"
-alias la="ls -a"
+alias ls="exa"
+alias l="exa --icons"
+alias la="exa -la"
+alias ll="exa -la"
 alias lla="ls -la"
-alias lt="ls --tree"
+alias lt="exa --tree"
+alias cat="bat"
 
 # Handy change dir shortcuts
 abbr .. 'cd ..'

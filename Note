@@ -1,0 +1,10 @@
+dependance : 
+npm pour nvim
+    pkgs.bluez
+    pkgs.blueman
+
+
+install manuellement Hyprland avec nixGL 
+ensuite install package 
+
+

@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 # detect hypr theme and initialize variables
 
-ScrDir=`dirname "$(realpath "$0")"`
+ScrDir=~/.config/hypr/scripts
 source $ScrDir/globalcontrol.sh
 waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
@@ -11,6 +11,7 @@ in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
 
+echo $EnableWallDcol
 if [ "$EnableWallDcol" -eq 1 ] ; then
     ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/theme.css
     reload_flag=1
@@ -18,7 +19,6 @@ elif [ $(readlink $waybar_dir/themes/theme.css) != "$waybar_dir/themes/${gtkThem
     ln -fs $waybar_dir/themes/${gtkTheme}.css $waybar_dir/themes/theme.css
     reload_flag=1
 fi
-
 
 # calculate height from control file or monitor res
 
@@ -70,7 +70,7 @@ fi
 # restart waybar
 
 if [ "$reload_flag" == "1" ] ; then
-    killall waybar
+    pkill waybar
     waybar > /dev/null 2>&1 &
     # killall -SIGUSR2 waybar
 fi

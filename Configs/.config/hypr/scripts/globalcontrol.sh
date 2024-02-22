@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # wallpaper var
-EnableWallDcol=0
+EnableWallDcol=1
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-CloneDir="$HOME/Hyprdots"
+CloneDir="/home/jtraversier/Documents/hyprdots"
 ThemeCtl="$ConfDir/hypr/theme.ctl"
 cacheDir="$HOME/.cache/hyprdots"
 

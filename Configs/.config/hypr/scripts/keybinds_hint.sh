@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 pkill -x rofi && exit
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"

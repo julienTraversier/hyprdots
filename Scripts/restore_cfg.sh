@@ -37,14 +37,14 @@ do
     cfg=`echo "${lst}" | awk -F '|' '{print $4}'`
     pkg=`echo "${lst}" | awk -F '|' '{print $5}'`
 
-    while read -r pkg_chk
-    do
-        if ! pkg_installed ${pkg_chk}
-            then
-            echo "skipping ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
-            continue 2
-        fi
-    done < <( echo "${pkg}" | xargs -n 1 )
+    #while read -r pkg_chk
+    #do
+    #    if ! pkg_installed ${pkg_chk}
+    #        then
+    #        echo "skipping ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
+    #        continue 2
+    #    fi
+    #done < <( echo "${pkg}" | xargs -n 1 )
 
     echo "${cfg}" | xargs -n 1 | while read -r cfg_chk
     do

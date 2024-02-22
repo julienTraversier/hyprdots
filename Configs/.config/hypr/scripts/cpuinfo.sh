@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # CPU model
 model=$(lscpu | awk -F ':' '/Model name/ {sub(/^ *| *$/,"",$2); print $2}' | awk '{NF-=3}1')

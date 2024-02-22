@@ -12,8 +12,7 @@ fi
 
 if ! pkg_installed imagemagick || ! pkg_installed parallel 
 then
-    echo "ERROR : dependency failed, imagemagick/parallel is not installed..."
-    exit 0
+    echo "ERROR : dependency failed, imagemagick/parallel should be there"
 fi
 
 # set variables
@@ -148,11 +147,11 @@ do
     echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
     parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
 
-    if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
-        codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
-        if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
-            code --install-extension "${codex}" 2> /dev/null
-        fi
-    fi
+    #if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
+    #    codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
+    #    if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
+    #        code --install-extension "${codex}" 2> /dev/null
+    #    fi
+    #fi
 done < $ctlFile
 

@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 
 # read control file and initialize variables
 
-ScrDir=`dirname "$(realpath "$0")"`
+ScrDir=~/.config/hypr/scripts
 waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
 conf_file="$waybar_dir/config.jsonc"
@@ -119,7 +119,6 @@ cat $modules_dir/footer.jsonc >> $conf_file
 
 
 # generate style and restart waybar
-
 $ScrDir/wbarstylegen.sh
 
 

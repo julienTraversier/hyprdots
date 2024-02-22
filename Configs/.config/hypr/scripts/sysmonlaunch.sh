@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Define the list of commands to check in order of preference
 commands_to_check=("htop" "btop" "top")
