@@ -13,6 +13,8 @@ alias lla="ls -la"
 alias lt="exa --tree"
 alias cat="bat"
 
+/bin/cat ~/.cache/wallust/sequences
+
 # Handy change dir shortcuts
 abbr .. 'cd ..'
 abbr ... 'cd ../..'

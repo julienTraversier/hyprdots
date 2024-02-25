@@ -63,17 +63,17 @@ palette = "dark"
 # This field chooses a method to use when the gathered colors aren't enough:
 #  * interpolation - (default) Tries to pick two colors and built gradients over them
 #  * complementary - Uses the complementary colors of two colors, or more (if needed), colors.
-#generation = "interpolate"
+generation = "complementary"
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
 # with your images. The reference color for the contrast is the background color.
-#check_contrast = true
+check_contrast = true
 
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
 # decreases it (on a scheme with strong and vivid colors)
-#saturation = 35
+saturation = 80
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
 #alpha = 100
