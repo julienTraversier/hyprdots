@@ -2,6 +2,7 @@ dependance :
 npm pour nvim
     pkgs.bluez
     pkgs.blueman
+    pillow lib for python image processing
 
 
 install manuellement Hyprland avec nixGL 

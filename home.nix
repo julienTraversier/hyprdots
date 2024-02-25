@@ -95,6 +95,8 @@
 #    pkgs.libdbusmenu-gtk3
 #    pkgs.plasma-browser-integration
     pkgs.playerctl
+    pkgs.pokemon-colorscripts-mac
+    pkgs.wallust
 #
 #    pkgs.webp-pixbuf-loader
 #    pkgs.gtk-layer-shell

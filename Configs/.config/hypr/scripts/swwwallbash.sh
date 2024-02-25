@@ -14,6 +14,7 @@ if [ -z "${input_wall}" ] || [ ! -f "${input_wall}" ] ; then
 fi
 
 
+echo $input_wall
 # color conversion functions
 
 hex_conv() {
@@ -53,10 +54,10 @@ dark_light() {
 if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
     mkdir -p "${cacheDir}/${gtkTheme}"
     readarray -t dcol <<< $(magick "${input_wall}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | sed -e 's/.*\(#[0-9A-F]\+\).*/\1/' | cut -c2-7 | sort)
+    echo $dcol
     for (( i = 1; i < 3; i++ )) ; do
         [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
     done
-
     for (( j = 0; j < 3; j++ )) ; do
         r_swatch=$(echo "#${dcol[j]}" | sed 's/#//g')
         echo "dcol_pry${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
@@ -64,15 +65,14 @@ if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
         echo "dcol_txt${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
         z=0
 
+
         if dark_light "#${dcol[j]}" ; then
-            echo "#${dcol[j]} // pry${j}-[dark]"
             for t in 25 45 65 85 ; do
                 z=$(( z + 1 ))
                 r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 70,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (6*z) )) -channel RGB -evaluate multiply 3.$t -format "%c" histogram:info: | awk '{print $4}'`)
                 echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
             done
         else
-            echo "#${dcol[j]} // pry${j}-[light]"
             for t in 20 40 60 80 ; do
                 z=$(( z + 1 ))
                 r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 100,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (3*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
@@ -83,6 +83,15 @@ if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
     cat "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
 fi
 
+#only for fish color
+brightness=$(python3.11 is_img_dark.py "$input_wall")
+if [[ "$brightness" -eq 0 ]]; then
+    echo "dark"
+    wallust run $input_wall -kw -p dark16
+else
+    echo "light"
+    wallust run $input_wall -kw -p light16
+fi
 
 # wallbash fn to apply colors to templates
 
