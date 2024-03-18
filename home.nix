@@ -24,7 +24,6 @@
     pkgs.neovim
     pkgs.eza
     pkgs.fzf
-    pkgs.kitty
     pkgs.lazygit
     pkgs.ripgrep
     pkgs.fish
@@ -37,26 +36,8 @@
     pkgs.dunst
     pkgs.lm_sensors
 
-#    pkgs.coreutils
-#    pkgs.fuzzel
-#    pkgs.rsync
-#    pkgs.meson
-#    pkgs.typescript
-#    pkgs.gjs
-#    pkgs.sassc
-#
-#    pkgs.python311Packages.build
-#    pkgs.python311Packages.material-color-utilities
-#    pkgs.python311Packages.pillow
-#    pkgs.python311Packages.poetry-core
-#    pkgs.python311Packages.pywal
-#    pkgs.python311Packages.setuptools-scm
-#    pkgs.python311Packages.wheel
-#
     pkgs.pipewire
     pkgs.wireplumber
-    pkgs.networkmanager
-    pkgs.networkmanagerapplet
 
     pkgs.qt6.qtwayland
     pkgs.libsForQt5.qt5.qtquickcontrols
@@ -75,9 +56,6 @@
     pkgs.cliphist
     pkgs.wl-clipboard
 
-    pkgs.polkit-kde-agent
-#   pkgs.xdg-desktop-portal
-#   pkgs.xdg-desktop-portal-hyprland
     pkgs.parallel
     pkgs.imagemagick
     pkgs.jq
@@ -92,39 +70,8 @@
     pkgs.nwg-look
     pkgs.libsForQt5.qtstyleplugin-kvantum
     pkgs.qt5ct
-#    pkgs.libdbusmenu-gtk3
-#    pkgs.plasma-browser-integration
     pkgs.playerctl
     pkgs.pokemon-colorscripts-mac
-    pkgs.wallust
-#
-#    pkgs.webp-pixbuf-loader
-#    pkgs.gtk-layer-shell
-#    pkgs.gtk3
-#    pkgs.gtksourceview
-#    pkgs.gobject-introspection
-#    pkgs.upower
-#    pkgs.yad
-#    pkgs.ydotool
-#
-#    pkgs.polkit_gnome
-#    pkgs.gnome.gnome-control-center
-#    pkgs.gnome.gnome-keyring
-#    pkgs.blueberry
-#    pkgs.wlsunset
-#    pkgs.gnome.gnome-bluetooth
-#
-#    pkgs.swayidle
-#    pkgs.wl-clipboard
-#    pkgs.hyprpicker
-#    pkgs.grim
-#    pkgs.tesseract
-#
-#    pkgs.adw-gtk3
-#    pkgs.gradience
-#    pkgs.fontconfig
-#    pkgs.lexend
-#
 
 
 
@@ -175,39 +122,5 @@
   home.sessionVariables = {
      EDITOR = "nvim";
   };
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    configPackages = [ pkgs.hyprland ];
-  };
-
-
-
-#  programs.fish = {
-#    enable = true;
-#    interactiveShellInit = "starship init fish | source";
-#    shellAliases = {
-#      l = "exa --icons";
-#      ls = "exa -l";
-#      t = "exa --tree"; 
-#      cat = "bat";
-#    };              
-#  };
-#  programs.kitty = {
-#    enable = true;
-#    font.name = "FiraCode";
-#    font.size = 11;
-#    shellIntegration.enableFishIntegration = true;
-#  };
-#  programs.starship = {
-#    enable = true;
-#    enableFishIntegration = true;
-#  };
-
-  # Let Home Manager install and manage itself.
-#  programs.ripgrep.enable = true;
-#  programs.fzf.enable = true;
-#  programs.eza.enable = true;
-#  programs.lazygit.enable = true;
   programs.home-manager.enable = true;
 }
