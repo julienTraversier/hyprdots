@@ -34,6 +34,7 @@ fi
 flg_Install=0
 flg_Restore=0
 flg_Service=0
+echo "assuming you have installed the system dependancy and the flake also you have grub and using systemd NO NVDIA using fish as shell"
 
 while getopts idrs RunStep; do
     case $RunStep in
@@ -89,59 +90,59 @@ EOF
     #----------------------#
     # prepare package list #
     #----------------------#
-    shift $((OPTIND - 1))
-    cust_pkg=$1
-    cp "${scrDir}/custom_hypr.lst" "${scrDir}/install_pkg.lst"
-
-    if [ -f "${cust_pkg}" ] && [ ! -z "${cust_pkg}" ]; then
-        cat "${cust_pkg}" >> "${scrDir}/install_pkg.lst"
-    fi
+    # shift $((OPTIND - 1))
+    # cust_pkg=$1
+    # cp "${scrDir}/custom_hypr.lst" "${scrDir}/install_pkg.lst"
+    #
+    # if [ -f "${cust_pkg}" ] && [ ! -z "${cust_pkg}" ]; then
+    #     cat "${cust_pkg}" >> "${scrDir}/install_pkg.lst"
+    # fi
 
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
-    if nvidia_detect; then
-        cat /usr/lib/modules/*/pkgbase | while read krnl; do
-            echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
-        done
-        nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
-    fi
-
-    nvidia_detect --verbose
+    # if nvidia_detect; then
+    #     cat /usr/lib/modules/*/pkgbase | while read krnl; do
+    #         echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
+    #     done
+    #     nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
+    # fi
+    #
+    # nvidia_detect --verbose
 
     #----------------#
     # get user prefs #
     #----------------#
-    if ! chk_list "aurhlpr" "${aurList[@]}"; then
-        echo -e "Available aur helpers:\n[1] yay\n[2] yay (bin)\n[3] paru\n[4] paru (bin)"
-        prompt_timer 120 "Enter option number [default: yay] "
+    # if ! chk_list "aurhlpr" "${aurList[@]}"; then
+    #     echo -e "Available aur helpers:\n[1] yay\n[2] yay (bin)\n[3] paru\n[4] paru (bin)"
+    #     prompt_timer 120 "Enter option number [default: yay] "
+    #
+    #     case "${promptIn}" in
+    #         1) export getAur="yay" ;;
+    #         2) export getAur="yay-bin" ;;
+    #         3) export getAur="paru" ;;
+    #         4) export getAur="paru-bin" ;;
+    #         *) echo -e "...Invalid option selected..." ; exit 1 ;;
+    #     esac
+    # fi
 
-        case "${promptIn}" in
-            1) export getAur="yay" ;;
-            2) export getAur="yay-bin" ;;
-            3) export getAur="paru" ;;
-            4) export getAur="paru-bin" ;;
-            *) echo -e "...Invalid option selected..." ; exit 1 ;;
-        esac
-    fi
-
-    if ! chk_list "myShell" "${shlList[@]}"; then
-        echo -e "Select shell:\n[1] zsh\n[2] fish"
-        prompt_timer 120 "Enter option number"
-
-        case "${promptIn}" in
-            1) export myShell="zsh" ;;
-            2) export myShell="fish" ;;
-            *) echo -e "...Invalid option selected..." ; exit 1 ;;
-        esac
-        echo "${myShell}" >> "${scrDir}/install_pkg.lst"
-    fi
-
+    # if ! chk_list "myShell" "${shlList[@]}"; then
+    #     echo -e "Select shell:\n[1] zsh\n[2] fish"
+    #     prompt_timer 120 "Enter option number"
+    #
+    #     case "${promptIn}" in
+    #         1) export myShell="zsh" ;;
+    #         2) 
+    #         *) echo -e "...Invalid option selected..." ; exit 1 ;;
+    #     esac
+    #     echo "${myShell}" >> "${scrDir}/install_pkg.lst"
+    # fi
+    export myShell="fish"
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
-    rm "${scrDir}/install_pkg.lst"
+    # "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
+    # rm "${scrDir}/install_pkg.lst"
 fi
 
 #---------------------------#

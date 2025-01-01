@@ -38,12 +38,12 @@ cat "${CfgLst}" | while read lst; do
     cfg=$(echo "${lst}" | awk -F '|' '{print $4}')
     pkg=$(echo "${lst}" | awk -F '|' '{print $5}')
 
-    while read -r pkg_chk; do
-        if ! pkg_installed "${pkg_chk}"; then
-            echo -e "\033[0;33m[skip]\033[0m ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
-            continue 2
-        fi
-    done < <(echo "${pkg}" | xargs -n 1)
+    # while read -r pkg_chk; do
+    #     # if ! pkg_installed "${pkg_chk}"; then
+    #     #     echo -e "\033[0;33m[skip]\033[0m ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
+    #     #     continue 2
+    #     # fi
+    # done < <(echo "${pkg}" | xargs -n 1)
 
     echo "${cfg}" | xargs -n 1 | while read -r cfg_chk; do
         if [[ -z "${pth}" ]]; then continue; fi
@@ -76,8 +76,8 @@ cat "${CfgLst}" | while read lst; do
 
 done
 
-if [ -z "${ThemeOverride}" ]; then
-    if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' "${HOME}/.config/hypr/hyprland.conf" | wc -l) -eq 0 ]; then
-        echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> "${HOME}/.config/hypr/hyprland.conf"
-    fi
-fi
+# if [ -z "${ThemeOverride}" ]; then
+#     if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' "${HOME}/.config/hypr/hyprland.conf" | wc -l) -eq 0 ]; then
+#         echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> "${HOME}/.config/hypr/hyprland.conf"
+#     fi
+# fi

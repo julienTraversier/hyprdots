@@ -26,7 +26,7 @@ sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 
 #// firefox
 
-if pkg_installed firefox; then
+# if pkg_installed firefox; then
     FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
 
     if [ -z "${FoxRel}" ]; then
@@ -46,5 +46,5 @@ if pkg_installed firefox; then
     do
         firefox -profile "${FoxRel}" "${fext}" &> /dev/null &
     done
-fi
+# fi
 

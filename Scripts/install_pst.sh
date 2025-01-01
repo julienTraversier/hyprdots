@@ -12,7 +12,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # sddm
-if pkg_installed sddm; then
+# if pkg_installed sddm; then
 
     echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m detected // sddm"
     if [ ! -d /etc/sddm.conf.d ]; then
@@ -42,26 +42,26 @@ if pkg_installed sddm; then
         echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m avatar set for ${USER}..."
     fi
 
-else
-    echo -e "\033[0;33m[WARNING]\033[0m sddm is not installed..."
-fi
+# else
+#     echo -e "\033[0;33m[WARNING]\033[0m sddm is not installed..."
+# fi
 
 # dolphin
-if pkg_installed dolphin && pkg_installed xdg-utils; then
+# if pkg_installed dolphin && pkg_installed xdg-utils; then
 
     echo -e "\033[0;32m[FILEMANAGER]\033[0m detected // dolphin"
     xdg-mime default org.kde.dolphin.desktop inode/directory
     echo -e "\033[0;32m[FILEMANAGER]\033[0m setting" `xdg-mime query default "inode/directory"` "as default file explorer..."
 
-else
-    echo -e "\033[0;33m[WARNING]\033[0m dolphin is not installed..."
-fi
+# else
+#     echo -e "\033[0;33m[WARNING]\033[0m dolphin is not installed..."
+# fi
 
 # shell
 "${scrDir}/restore_shl.sh"
 
 # flatpak
-if ! pkg_installed flatpak; then
+# if ! pkg_installed flatpak; then
 
     echo -e "\033[0;32m[FLATPAK]\033[0m flatpak application list..."
     awk -F '#' '$1 != "" {print "["++count"]", $1}' "${scrDir}/.extra/custom_flat.lst"
@@ -75,6 +75,6 @@ if ! pkg_installed flatpak; then
         echo -e "\033[0;33m[SKIP]\033[0m installing flatpaks..."
     fi
 
-else
-    echo -e "\033[0;33m[SKIP]\033[0m flatpak is already installed..."
-fi
+# else
+#     echo -e "\033[0;33m[SKIP]\033[0m flatpak is already installed..."
+# fi

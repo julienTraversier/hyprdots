@@ -65,7 +65,8 @@
             eza
             starship
             fastfetch
-            fish
+            flatpak
+            which
 
 
             ];
